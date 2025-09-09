@@ -12,11 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('fetnet_activities_types', function (Blueprint $table) {
+        Schema::create('fetnet_activity_types', function (Blueprint $table) {
             $table->integer('id')->primary()->autoIncrement();
             $table->string('name', 50)->nullable();
             $table->timestamps();
         });
+
+        \App\Models\FetNet\ActivityType::create([
+            'name' => 'Theory',
+        ]);
+        \App\Models\FetNet\ActivityType::create([
+            'name' => 'Laboratory',
+        ]);
+        \App\Models\FetNet\ActivityType::create([
+            'name' => 'Studio',
+        ]);
     }
 
     /**
@@ -25,7 +35,7 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('fetnet_activities_types');
+        Schema::dropIfExists('fetnet_activity_types');
 
     }
 };

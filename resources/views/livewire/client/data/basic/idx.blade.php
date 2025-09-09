@@ -10,15 +10,25 @@
                 <x-input label="Fakultas" value="{{$client->faculty->code}} | {{$client->faculty->name}}" class="input-md" readonly/>
             </div>
         </div>
-        <br/>
         <div class="flex flex-wrap -mx-3">
             <div class="w-full max-w-full px-3 mb-6 sm:w-3/4 sm:flex-none xl:mb-0 xl:w-3/4">
                 <x-input label="Description" value="{{$client->description}}" class="input-md">
                 </x-input>
             </div>
         </div>
-
-        <br/>
+        <div class="flex flex-wrap -mx-3">
+            <div class="w-full max-w-full px-3 mb-6 sm:w-3/4 sm:flex-none xl:mb-0 xl:w-3/4">
+                <br/>
+                <hr/>
+            </div>
+        </div>
+        <livewire:client.data.basic.set-semester/>
+        <div class="flex flex-wrap -mx-3">
+            <div class="w-full max-w-full px-3 mb-6 sm:w-3/4 sm:flex-none xl:mb-0 xl:w-3/4">
+                <hr/>
+                <br/>
+            </div>
+        </div>
 
         <div class="flex flex-wrap -mx-3">
             <div class="w-full max-w-full px-3 mb-6 sm:w-2/4 sm:flex-none xl:mb-0 xl:w-2/4">

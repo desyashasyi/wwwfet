@@ -3,12 +3,8 @@
 namespace App\Livewire\Program\Data\Activities;
 
 use App\Models\FetNet\Activities;
-use App\Models\FetNet\ActivityStudent;
-use App\Models\FetNet\ActivityTeacher;
 use App\Models\FetNet\ActivityType;
-use App\Models\FetNet\Semester;
 use App\Models\FetNet\Student;
-use App\Models\FetNet\Subject;
 use App\Models\FetNet\Teacher;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -16,7 +12,7 @@ use Livewire\Attributes\On;
 use Mary\Traits\Toast;
 
 
-class Edit extends Component
+class View extends Component
 {
     use Toast;
     public ?array $teachers_multi_searchable_ids = [];
@@ -27,22 +23,22 @@ class Edit extends Component
     public $activity_searchable_id = null;
     public $activityTypesSearchable;
 
-    public $editActivity = false;
+    public $viewActivity = false;
     public $activity;
 
     public $activityId;
     public function render()
     {
-        return view('livewire.program.data.activities.edit');
+        return view('livewire.program.data.activities.view');
     }
 
-    #[On('ProgramDataActivitiesEdit_EditActivity')]
-    public function editActivity($activityId){
+    #[On('ProgramDataActivitiesView_ViewActivity')]
+    public function viewActivity($activityId){
         $this->dispatch('ProgramDataActivitiesCreate_cancelAddActivity');
-        $this->dispatch('ProgramDataActivitiesView_cancelViewActivity');
+        $this->dispatch('ProgramDataActivitiesEdit_cancelviewActivity');
         $this->teachers_multi_searchable_ids = [];
         $this->students_multi_searchable_ids = [];
-        $this->editActivity = true;
+        $this->viewActivity = true;
         $this->activity = Activities::find($activityId);
         $this->activityId = $activityId;
         foreach($this->activity->teachers as $teacher){
@@ -59,9 +55,9 @@ class Edit extends Component
         $this->activityTypeSelect();
     }
 
-    #[On('ProgramDataActivitiesEdit_cancelEditActivity')]
-    public function cancelEditActivity(){
-        $this->editActivity = false;
+    #[On('ProgramDataActivitiesView_cancelViewActivity')]
+    public function cancelViewActivity(){
+        $this->viewActivity = false;
     }
 
     public function mount()
@@ -118,49 +114,9 @@ class Edit extends Component
             ->merge($selectedOption);     // <-- Adds selected option
     }
 
-    public function update(){
-        if(is_null($this->activity)){
-            $this->error('Your should select an activity.', position: 'toast-top toast-center');
-        }else {
-            $this->validate([
-                'teachers_multi_searchable_ids' => ['required', 'array'],
-                'students_multi_searchable_ids' => ['required', 'array'],
-                'activity_searchable_id' => ['required'],
-            ]);
-
-
-            $teachers = collect($this->teachers_multi_searchable_ids);
-            $students = collect($this->students_multi_searchable_ids);
-
-            $activity = Activities::where('id', $this->activityId)->update([
-                'type_id' => $this->activity_searchable_id,
-                'active' => true,
-            ]);
-
-            // ✅ HAPUS RELASI LAMA terlebih dahulu (ini kunci!)
-            ActivityTeacher::where('activity_id', $this->activityId)->delete();
-            ActivityStudent::where('activity_id', $this->activityId)->delete();
-
-            // ✅ Re-insert data baru
-            foreach ($teachers as $teacherId) {
-                ActivityTeacher::create([
-                    'activity_id' => $this->activityId,
-                    'teacher_id' => $teacherId,
-                ]);
-            }
-
-            foreach ($students as $studentId) {
-                ActivityStudent::create([
-                    'activity_id' => $this->activityId,
-                    'student_id' => $studentId,
-                ]);
-            }
-            $this->dispatch('ProgramDataActivitiesIndex_refresh');
-            $this->success('Activity has been updated.', position: 'toast-top toast-center');
-            $this->teachers_multi_searchable_ids = [];
-            $this->students_multi_searchable_ids = [];
-            $this->activity_searchable_id = null;
-            $this->activity = null;
-        }
+    public function editActivity($activityId){
+        $this->viewActivity = false;
+        $this->dispatch('ProgramDataActivitiesCreate_cancelAddActivity');
+        $this->dispatch('ProgramDataActivitiesEdit_EditActivity', $activityId);
     }
 }

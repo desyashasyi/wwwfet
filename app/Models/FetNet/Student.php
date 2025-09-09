@@ -11,7 +11,10 @@ class Student extends Model
     protected $guarded = [];
     protected $table = 'fetnet_students';
 
-    public function children(){
-        return $this->hasMany(Student::class, 'parent_id','id' );
+    public function group(){
+        return $this->hasMany(Student::class, 'parent_id','id' )->orderBy('name');
+    }
+    public function sub(){
+        return $this->hasMany(Student::class, 'parent_id','id' )->orderBy('name');
     }
 }

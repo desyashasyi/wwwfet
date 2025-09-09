@@ -6,6 +6,7 @@ use App\Models\FetNet\Client;
 use App\Models\FetNet\ClientConfig;
 use App\Models\FetNet\Days;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class Idx extends Component
 {
@@ -19,7 +20,7 @@ class Idx extends Component
             $this->numberOfHours = $client->config->number_of_hours;
 
         }
-        return view('livewire.admin.data.basic.idx', ['client' => $client]);
+        return view('livewire.client.data.basic.idx', ['client' => $client]);
     }
 
     public function daysDecrement()
@@ -31,7 +32,7 @@ class Idx extends Component
     }
     public function daysIncrement()
     {
-        if($this->numberOfDays < 7){
+        if($this->numberOfDays < 5){
             $this->numberOfDays++;
             ClientConfig::where('client_id', auth()->user()->client->id)->update(['number_of_days' => $this->numberOfDays]);
         }
@@ -49,5 +50,9 @@ class Idx extends Component
             $this->numberOfHours++;
             ClientConfig::where('client_id', auth()->user()->client->id)->update(['number_of_hours' => $this->numberOfHours]);
         }
+    }
+
+    public function mount(){
+        Carbon::setWeekStartsAt(Carbon::MONDAY);
     }
 }

@@ -15,9 +15,12 @@ return new class extends Migration
         Schema::create('fetnet_activities', function (Blueprint $table) {
 
             $table->integer('id')->primary()->autoIncrement();
+            $table->integer('semester_id')->nullable();
             $table->integer('program_id')->nullable();
             $table->integer('subject_id')->nullable();
             $table->integer('duration')->nullable();
+            $table->boolean('active')->nullable();
+            $table->integer('type_id')->nullable();
             $table->timestamps();
         });
     }

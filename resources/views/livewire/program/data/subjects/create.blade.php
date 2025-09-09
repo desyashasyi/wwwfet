@@ -45,6 +45,9 @@
                 <div class="w-full max-w-full px-3 mb-6 sm:w-6/6 sm:flex-none xl:mb-0 xl:w-6/6">
                     <x-button wire:click="enableAddsubject" class="btn btn-error btn-sm" icon="o-x-circle" label="Cancel" />
                     <x-button wire:click="save" class="btn btn-success btn-sm" icon="o-bookmark" label="Save"/>
+                    <x-button
+                        wire:click="$dispatch('ProgramDataSubjectsComponentImportExcel_enableAddsubjectsState')"
+                        class="btn btn-success btn-sm" label="Import Excel"/>
                 </div>
             </div>
         </x-card>

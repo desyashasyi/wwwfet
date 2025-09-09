@@ -38,4 +38,18 @@ class Idx extends Component
             $this->buttonAddStudents = true;
         }
     }
+
+    public function addGroup($studentId){
+        $this->buttonAddStudents = false;
+        $this->dispatch('ProgramDataStudentsGroupCreate_addGroup', $studentId);
+        $this->dispatch('ProgramDataStudentsCreate_cancelAddStudents');
+        $this->dispatch('ProgramDataStudentsComponentsSubGroupCreate_cancelAddSubGroupOnly');
+    }
+
+    public function addSubGroup($groupId){
+        $this->buttonAddStudents = false;
+        $this->dispatch('ProgramDataStudentsComponentsSubGroupCreate_addSubGroup', $groupId);
+        $this->dispatch('ProgramDataStudentsCreate_cancelAddStudents');
+        $this->dispatch('ProgramDataStudentsGroupCreate_cancelAddGroupOnly');
+    }
 }

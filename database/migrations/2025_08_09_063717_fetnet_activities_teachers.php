@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('fetnet_activities_teachers', function (Blueprint $table) {
+        Schema::create('fetnet_activity_teachers', function (Blueprint $table) {
             $table->integer('activity_id')->nullable();
             $table->integer('teacher_id')->nullable();
             $table->timestamps();
@@ -25,6 +25,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('fetnet_activities_teachers');
+        Schema::dropIfExists('fetnet_activity_teachers');
     }
 };

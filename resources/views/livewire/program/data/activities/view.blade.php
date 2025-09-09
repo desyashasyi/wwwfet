@@ -1,32 +1,32 @@
 <div>
 
-    @if($createActivity)
+    @if($viewActivity)
         <x-card class="bg-gray-200" shadow separator>
             <div class="flex flex-wrap -mx-3">
                 <div class="w-full max-w-full px-3 mb-6 sm:w-1/12 sm:flex-none xl:mb-0 xl:w-1/12">
-                    @if(!is_null($subject))
-                        <x-input value="{{$subject->code}}" label="Code" readonly/>
+                    @if(!is_null($activity))
+                        <x-input value="{{$activity->subject->code}}" label="Code" readonly/>
                     @else
                         <x-input value="" label="Code" readonly/>
                     @endif
                 </div>
                 <div class="w-full max-w-full px-3 mb-6 sm:w-1/12 sm:flex-none xl:mb-0 xl:w-1/12">
-                    @if(!is_null($subject))
-                        <x-input value="{{$subject->credit}}" label="Credit" readonly/>
+                    @if(!is_null($activity))
+                        <x-input value="{{$activity->subject->credit}}" label="Credit" readonly/>
                     @else
                         <x-input value="" label="Credit" readonly/>
                     @endif
                 </div>
                 <div class="w-full max-w-full px-3 mb-6 sm:w-1/12 sm:flex-none xl:mb-0 xl:w-1/12">
-                    @if(!is_null($subject))
-                        <x-input value="{{$subject->semester}}" label="Semester" readonly/>
+                    @if(!is_null($activity))
+                        <x-input value="{{$activity->subject->semester}}" label="Semester" readonly/>
                     @else
                         <x-input value="" label="Semester" readonly/>
                     @endif
                 </div>
                 <div class="w-full max-w-full px-3 mb-6 sm:w-2/12 sm:flex-none xl:mb-0 xl:w-2/12">
-                    @if(!is_null($subject))
-                        <x-input value="{{$subject->year}}" label="Curiculum Year" readonly/>
+                    @if(!is_null($activity))
+                        <x-input value="{{$activity->subject->year}}" label="Curiculum Year" readonly/>
                     @else
                         <x-input value="" label="Curiculum Year" readonly/>
                     @endif
@@ -34,8 +34,8 @@
 
                 <div class="w-full max-w-full px-3 mb-6 sm:w-7/12 sm:flex-none xl:mb-0 xl:w-7/12">
 
-                    @if(!is_null($subject))
-                        <x-input value="{{$subject->name}}" label="Name" readonly/>
+                    @if(!is_null($activity))
+                        <x-input value="{{$activity->subject->name}}" label="Name" readonly/>
                     @else
                         <x-input value="" label="Name" readonly/>
                     @endif
@@ -51,7 +51,8 @@
                         search-function="teacherSelect"
                         no-result-text="Ops! Nothing here ..."
                         clearable
-                        searchable>
+                        searchable
+                        readonly>
 
                         @scope('item', $teacher)
                         <x-list-item :item="$teacher">
@@ -78,7 +79,9 @@
                         search-function="studentSelect"
                         no-result-text="Ops! Nothing here ..."
                         clearable
-                        searchable>
+                        searchable
+                        readonly
+                    >
 
                         @scope('item', $student)
                         <x-list-item :item="$student">
@@ -106,13 +109,15 @@
                         min-chars="2" {{-- Default is `0`--}}
                         placeholder="Select type"
                         single
+                        readonly
                     >
                     </x-choices>
                 </div>
             </div>
             <br/>
             <div class="w-full max-w-full px-3 mb-6 sm:w-6/6 sm:flex-none xl:mb-0 xl:w-6/6">
-                <x-button wire:click="save" class="btn btn-success btn-sm" icon="o-bookmark" label="Create activity"/>
+                <x-button wire:click="deleteActivity" class="btn btn-error btn-sm" icon="o-trash" label="Delete" />
+                <x-button wire:click="editActivity({{$activity->id}})" class="btn btn-success btn-sm" icon="o-bookmark" label="Edit activity"/>
             </div>
         </x-card>
     @endif

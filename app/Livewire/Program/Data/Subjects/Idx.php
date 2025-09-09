@@ -31,7 +31,7 @@ class Idx extends Component
     }
 
     public function mount(){
-        $this->numberOfSubjects = 10;
+        $this->numberOfSubjects = 8;
         if(!Auth()->user()){
             return redirect()->route('login');
         }
@@ -46,6 +46,6 @@ class Idx extends Component
     public function increaseNumberOfPages(){
         $this->resetPage();
         $this->buttonAddSubjects = true;
-        $this->numberOfSubjects = 10;
+        $this->numberOfSubjects = 8;
     }
 }

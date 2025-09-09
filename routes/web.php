@@ -13,10 +13,10 @@ Route::get('/client', \App\Livewire\Client\Idx::class)->name('client.idx');
 Route::get('/client/data/basic', \App\Livewire\Client\Data\Basic\Idx::class)->name('client.data.basic');
 Route::get('/client/program', \App\Livewire\Client\Program\Idx::class)->name('client.program');
 Route::get('/program', \App\Livewire\Program\Idx::class)->name('program.idx');
-Route::get('/program/data/activities', \App\Livewire\Program\Data\Activities\Idx::class)->name('program.activities.idx');
-Route::get('/program/data/students', \App\Livewire\Program\Data\Students\Idx::class)->name('program.students.idx');
-Route::get('/program/data/subjects', \App\Livewire\Program\Data\Subjects\Idx::class)->name('program.subjects.idx');
-Route::get('/program/data/teachers', \App\Livewire\Program\Data\Teachers\Idx::class)->name('program.teachers.idx');
+Route::get('/program/data/activities', \App\Livewire\Program\Data\Activities\Idx::class)->name('program.data.activities.idx');
+Route::get('/program/data/students', \App\Livewire\Program\Data\Students\Idx::class)->name('program.data.students.idx');
+Route::get('/program/data/subjects', \App\Livewire\Program\Data\Subjects\Idx::class)->name('program.data.subjects.idx');
+Route::get('/program/data/teachers', \App\Livewire\Program\Data\Teachers\Idx::class)->name('program.data.teachers.idx');
 Route::get('/program/data/specialization', \App\Livewire\Program\Data\Specializations\Idx::class)->name('program.specialization.idx');
-
+Route::get('/program/time/teachers', \App\Livewire\Program\Time\Teachers\Idx::class)->name('program.time.teachers.idx');
 

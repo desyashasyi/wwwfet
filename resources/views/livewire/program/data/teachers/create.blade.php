@@ -1,8 +1,8 @@
 <div>
     @if($enableAddTeacherState == true)
-        <x-card class="bg-gray-50" subtitle="Add teachers" shadow separator>
+        <x-card class="bg-gray-50"  subtitle="Add teacher" shadow separator>
             <div class="flex flex-wrap -mx-3">
-                <div class="w-full max-w-full px-3 mb-6 sm:w-1/5 sm:flex-none xl:mb-0 xl:w-1/5">
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/5 sm:flex-none xl:mb-0 xl:w-2/12">
                     <x-input wire:model="code" label="Code">
                         <x-slot:append>
                             <x-button wire:click="checkCode" class="ml-2"
@@ -12,11 +12,17 @@
                         </x-slot:append>
                     </x-input>
                 </div>
-                <div class="w-full max-w-full px-3 mb-6 sm:w-1/5 sm:flex-none xl:mb-0 xl:w-1/5">
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/5 sm:flex-none xl:mb-0 xl:w-1/12">
                     <x-input wire:model="univCode" label="Univ code" number/>
                 </div>
-                <div class="w-full max-w-full px-3 mb-6 sm:w-1/5 sm:flex-none xl:mb-0 xl:w-1/5">
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/5 sm:flex-none xl:mb-0 xl:w-3/12">
                     <x-input wire:model="employeeId" label="Employee ID"/>
+                </div>
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/6 sm:flex-none xl:mb-0 xl:w-3/12">
+                    <x-input wire:model="phone" label="Phone"/>
+                </div>
+                <div class="w-full max-w-full px-3 mb-6 sm:w-2/6 sm:flex-none xl:mb-0 xl:w-3/12" email>
+                    <x-input wire:model="email" label="Email"/>
                 </div>
             </div>
             <div class="flex flex-wrap -mx-3">
@@ -31,22 +37,16 @@
                     <x-input wire:model="name" label="Name"/>
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3">
-                <div class="w-full max-w-full px-3 mb-6 sm:w-1/6 sm:flex-none xl:mb-0 xl:w-1/6">
-                    <x-input wire:model="phone" label="Phone"/>
-                </div>
-                <div class="w-full max-w-full px-3 mb-6 sm:w-2/6 sm:flex-none xl:mb-0 xl:w-2/6" email>
-                    <x-input wire:model="email" label="Email"/>
-                </div>
-            </div>
             <br/>
             <div class="flex flex-wrap -mx-3">
                 <div class="w-full max-w-full px-3 mb-6 sm:w-6/6 sm:flex-none xl:mb-0 xl:w-6/6">
-                    <x-button wire:click="enableAddTeacher" class="btn btn-error btn-sm" icon="o-x-circle" label="Cancel" />
+                    <x-button wire:click="$dispatch('ProgramDataTeachersIdx_increaseNumberOfTeachers')" class="btn btn-error btn-sm" icon="o-x-circle" label="Cancel"/>
                     <x-button wire:click="save" class="btn btn-success btn-sm" icon="o-bookmark" label="Save"/>
+                    <x-button wire:click="$dispatch('ProgramDataTeachersComponentsImportExcel_addTeachers')" class="btn btn-success btn-sm" label="Import Excel" />
                 </div>
             </div>
         </x-card>
     @endif
+
     {{-- Success is as dangerous as failure. --}}
 </div>

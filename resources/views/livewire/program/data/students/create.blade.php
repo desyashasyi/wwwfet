@@ -6,6 +6,9 @@
                 <div class="w-full max-w-full px-3 mb-6 sm:w-2/12 sm:flex-none xl:mb-0 xl:w-2/12">
                     <x-input wire:model="batch" label="Batch"/>
                 </div>
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/12 sm:flex-none xl:mb-0 xl:w-1/12">
+                    <x-input wire:model="number_of_student" label="Number"/>
+                </div>
             </div>
 
             <br/>

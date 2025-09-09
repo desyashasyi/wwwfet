@@ -2,19 +2,14 @@
 
 namespace App\Models\FetNet;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class Semester extends Model
 {
     //
     use HasFactory;
     protected $fillable = [];
     protected $guarded = [];
-    protected $table = 'fetnet_subject';
-
-    public function activities(){
-        return $this->hasMany(Activities::class, 'subject_id','id' );
-    }
+    protected $table = 'fetnet_semester';
 }

@@ -33,7 +33,7 @@ class SubjectsImport implements WithProgressBar, SkipsOnError, ToCollection, Wit
         ])->validate();
 
         foreach ($rows as $row) {
-            Subject::firstOrCreate(
+            Subject::updateOrCreate(
                 [
                     // Kondisi untuk mencari:
                     'program_id' => $this->programId,
@@ -44,6 +44,7 @@ class SubjectsImport implements WithProgressBar, SkipsOnError, ToCollection, Wit
                     // Data ini HANYA akan digunakan jika record BARU dibuat:
                     'credit' => $row['sks'],
                     'semester' => $row['semester'],
+                    'year' => $row['tahun'],
                 ]
             );
         }

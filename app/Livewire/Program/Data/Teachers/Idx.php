@@ -40,14 +40,16 @@ class Idx extends Component
     #[On('ProgramDataTeachersIdx_reduceNumberOfTeachers')]
     public function reduceNumberOfPages(){
         $this->buttonAddTeachers = false;
-        $this->numberOfTeachers = 4;
+        $this->numberOfTeachers = 5;
     }
 
     #[On('ProgramDataTeachersIdx_increaseNumberOfTeachers')]
     public function increaseNumberOfPages(){
         $this->resetPage();
+        $this->dispatch('ProgramDataTeachersCreate_showAddTeachers');
         $this->buttonAddTeachers = true;
         $this->numberOfTeachers = 12;
+
     }
 
 

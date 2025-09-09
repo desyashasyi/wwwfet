@@ -53,6 +53,7 @@
                         <x-menu-separator />
                         <x-menu-item title="Home" icon="o-sparkles" link="/" />
                         <x-menu-sub title="Basic" icon="o-cog-6-tooth">
+                            <x-menu-item title="Data" icon="o-archive-box" link="/client/data/basic" />
                             <x-menu-item title="Institution" icon="o-archive-box" link="####" />
                         </x-menu-sub>
                         <x-menu-item title="Program" icon="o-sparkles" link="/client/program" />

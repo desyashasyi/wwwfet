@@ -38,7 +38,12 @@ class Create extends Component
             $this->dispatch('ProgramDataTeachersIdx_reduceNumberOfTeachers');
             $this->enableAddTeacherState = true;
         }
+    }
 
+    #[On('ProgramDataTeachersCreate_showAddTeachers')]
+    public function showAddTeacher(){
+        $this->resetErrorBag();
+        $this->enableAddTeacherState = true;
     }
 
     #[On('ProgramDataTeachersCreate_disableAddTeachers')]
